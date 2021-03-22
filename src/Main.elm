@@ -63,15 +63,13 @@ view model =
 
 makeDropDown : List Video -> Html.Html Msg
 makeDropDown videos =
-  Html.select []
+  Html.select [ Events.onInput VideoSelected ]
     <| makeOption {title = "Select one please ;)", path = ""} :: (List.map makeOption videos)
 
 makeOption : Video -> Html.Html Msg
 makeOption video =
   Html.option
-    [ Events.onClick (VideoSelected video.path)
-    , Html.Attributes.value video.path
-    ] [ Html.text video.title ]
+    [ Html.Attributes.value video.path ] [ Html.text video.title ]
 
 makePlayer : String -> Html.Html Msg
 makePlayer path =
