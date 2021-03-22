@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Minimalistic WebPlayer</title>
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+      background-color: #161616;
+      color: #ccc;
+    }
+
+    video {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-top: 1em;
+    }
+
+    select,
+    footer {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      display: block;
+      width: 960px;
+    }
+
+    footer {
+      text-align: center;
+    }
+
+    select {
+      background-color: #333;
+      color: #ccc;
+      border: 1px solid #555;
+      padding: 0.2em;
+    }
+  </style>
+  <script type="text/javascript" src="application.js"></script>
+</head>
+
+<body>
+
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="elm"></div>
+
+  <script>
+    const app = Elm.Main.init({
+      node: document.getElementById('elm'),
+      flags: {}
+    });
+  </script>
+
+</body>
+
+</html>
