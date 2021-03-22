@@ -39,7 +39,7 @@ type alias Model =
   }
 
 init : flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
-init _ _ _ = ({ selected = "", videos = [{title="asd", path="kjhkj"}] }, requestVideoList)
+init _ _ _ = ({ selected = "", videos = [] }, requestVideoList)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -53,11 +53,17 @@ update msg model =
 
 view : Model -> Document Msg
 view model =
-  { title = "My Title"
+  { title = "Minimal WebPlayer"
   , body =
     [ if List.length model.videos == 0 then Html.div [] [] else makeDropDown model.videos
     , if model.selected == "" then Html.div [] [] else makePlayer model.selected
-    , Html.footer [] [ Html.text "Handmade with love (and Vim and elm) ;)" ]
+    , Html.footer []
+        [ Html.text "Handmade with love (and Vim and elm) ;)"
+        , Html.a
+          [ Html.Attributes.href "https://gitea.code-infection.com/efertone/minimal-webplayer"
+          , Html.Attributes.target "_blank"
+          ] [ Html.text "source" ]
+        ]
     ]
   }
 
