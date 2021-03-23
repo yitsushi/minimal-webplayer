@@ -8,7 +8,6 @@ import Html.Events as Events
 import Msg
 import Types
 import Video
-import Types exposing (withDownload)
 
 view : Types.Model -> Document Msg.Msg
 view model =
