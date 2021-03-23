@@ -19,7 +19,8 @@
     }
 
     select,
-    footer {
+    footer,
+    .downloadList {
       margin-left: auto;
       margin-right: auto;
       margin-top: 1em;
@@ -53,6 +54,31 @@
       background-color: #cc60b6;
       color: #ccc;
     }
+
+    .downloadList:before {
+      content: "Direct Download";
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 1em;
+      display: block;
+    }
+
+    .downloadList {
+      margin-top: 2em;
+      width: 500px;
+      margin-bottom: 2em;
+    }
+
+    .downloadList > a {
+      color: #60b5cc;
+      display: list-item;
+      margin-top: 0.2em;
+      text-decoration: none;
+    }
+
+    .downloadList > a:hover {
+      color: #ccc;
+    }
   </style>
   <script type="text/javascript" src="application.js"></script>
 </head>
@@ -67,7 +93,13 @@
   <script>
     const app = Elm.Main.init({
       node: document.getElementById('elm'),
-      flags: {}
+      flags: {
+        debug: true,
+        extentions:
+        [ { extention: "mkv", mime: "video/x-matroska" }
+        , { extention: "mp4", mime: "video/mp4" }
+        ]
+      }
     });
   </script>
 

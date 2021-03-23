@@ -1,14 +1,12 @@
 module Main exposing (..)
 
 import Browser
-import Browser.Navigation
-import Url
-
 import Msg
-import Update
 import Request
 import Types
+import Update
 import View
+
 
 main : Program Types.Flags Types.Model Msg.Msg
 main =
@@ -21,5 +19,16 @@ main =
         , onUrlRequest = \_ -> Msg.NoOp
         }
 
-init : Types.Flags -> Url.Url -> Browser.Navigation.Key -> ( Types.Model, Cmd Msg.Msg )
-init _ _ _ = ({ selected = "", videos = [] }, Request.videoList)
+
+init : Types.Flags -> a -> b -> ( Types.Model, Cmd Msg.Msg )
+init flags _ _ =
+    ( initialState flags, Request.videoList )
+
+
+initialState : Types.Flags -> Types.Model
+initialState flags =
+    { selected = Nothing
+    , videos = []
+    , extensions = flags.extentions
+    , withDownload = Types.withDownload flags
+    }

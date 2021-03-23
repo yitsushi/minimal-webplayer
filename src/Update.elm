@@ -6,7 +6,7 @@ import Types
 update : Msg.Msg -> Types.Model -> ( Types.Model, Cmd Msg.Msg )
 update msg model =
   case msg of
-    Msg.VideoSelected path -> ({model | selected = path}, Cmd.none)
+    Msg.VideoSelected path -> ({model | selected = Just path}, Cmd.none)
     Msg.VideoListLanded response ->
       case response of
         Ok videos -> ({model | videos = videos}, Cmd.none)
