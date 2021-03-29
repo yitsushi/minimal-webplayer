@@ -27,3 +27,6 @@ gen-videos-json:
 .PHONY: update-videos
 update-videos: gen-videos-json
 	mc cp public/videos.json $(REMOTE)/$(BUCKET)/$(BASE_PATH)/videos.json
+
+start-dev-server:
+	python3 -m http.server --directory public

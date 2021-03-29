@@ -2,3 +2,4 @@ elm-stuff
 repl-temp-*
 public/application.js
 public/videos.json
+public/videos/

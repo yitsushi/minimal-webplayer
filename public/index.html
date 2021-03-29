@@ -101,6 +101,14 @@
         ]
       }
     });
+
+    app.ports.reloadVideoSource.subscribe(function() {
+      document.querySelector("video").load();
+    });
+
+    app.ports.reloadVideoSource = function(a) {
+      
+    }
   </script>
 
 </body>
