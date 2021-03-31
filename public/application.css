@@ -1,0 +1,75 @@
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #161616;
+  color: #ccc;
+}
+
+video {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 1em;
+}
+
+select,
+footer,
+.downloadList {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: block;
+  width: 960px;
+}
+
+footer {
+  text-align: center;
+}
+
+select {
+  background-color: #333;
+  color: #ccc;
+  border: 1px solid #555;
+  padding: 0.2em;
+}
+
+footer > a {
+  font-size: 0.8em;
+  margin-left: 1em;
+  padding: 0.1em 0.8em;
+  background-color: #60b5cc;
+  color: #333;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+footer > a:hover {
+  background-color: #cc60b6;
+  color: #ccc;
+}
+
+.downloadList:before {
+  content: "Direct Download";
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 1em;
+  display: block;
+}
+
+.downloadList {
+  margin-top: 2em;
+  width: 500px;
+  margin-bottom: 2em;
+}
+
+.downloadList > a {
+  color: #60b5cc;
+  display: list-item;
+  margin-top: 0.2em;
+  text-decoration: none;
+}
+
+.downloadList > a:hover {
+  color: #ccc;
+}

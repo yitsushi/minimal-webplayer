@@ -14,6 +14,7 @@ prod-build:
 upload: prod-build
 	mc cp public/index.html $(REMOTE)/$(BUCKET)/$(BASE_PATH)/index.html
 	mc cp public/application.js $(REMOTE)/$(BUCKET)/$(BASE_PATH)/application.js
+	mc cp public/application.css $(REMOTE)/$(BUCKET)/$(BASE_PATH)/application.css
 
 .PHONY: gen-videos-json
 gen-videos-json:

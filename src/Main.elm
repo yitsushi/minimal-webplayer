@@ -3,12 +3,13 @@ module Main exposing (..)
 import Browser
 import Msg
 import Request
-import Types
+import Model exposing (Model)
 import Update
 import View
+import Flags exposing (Flags)
 
 
-main : Program Types.Flags Types.Model Msg.Msg
+main : Program Flags Model Msg.Msg
 main =
     Browser.application
         { init = init
@@ -20,15 +21,6 @@ main =
         }
 
 
-init : Types.Flags -> a -> b -> ( Types.Model, Cmd Msg.Msg )
+init : Flags -> a -> b -> ( Model, Cmd Msg.Msg )
 init flags _ _ =
-    ( initialState flags, Request.videoList )
-
-
-initialState : Types.Flags -> Types.Model
-initialState flags =
-    { selected = Nothing
-    , videos = []
-    , extensions = flags.extentions
-    , withDownload = Types.withDownload flags
-    }
+    ( Model.initialState flags, Request.videoList )

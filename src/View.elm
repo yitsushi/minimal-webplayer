@@ -1,21 +1,21 @@
 module View exposing (..)
 
 import Browser exposing (Document)
+import Dropdown
 import Html
 import Html.Attributes
-import Html.Events as Events
 import Msg
-import Types
+import Model exposing (Model)
 import Video
 
 
-view : Types.Model -> Document Msg.Msg
+view : Model -> Document Msg.Msg
 view model =
     { title = "Minimal WebPlayer"
     , body =
-        [ makeDropDown model.videos
-        , makePlayer model
-        , downloadList model
+        [ dropdown model.videos
+        , player model
+        , download model
         , Html.footer []
             [ Html.text "Handmade with love (and Vim and elm) ;)"
             , Html.a
@@ -28,59 +28,41 @@ view model =
     }
 
 
-empty : Html.Html Msg.Msg
-empty =
-    Html.div [] []
-
-
-makeDropDown : List Video.Video -> Html.Html Msg.Msg
-makeDropDown videos =
+dropdown : List Video.Video -> Html.Html Msg.Msg
+dropdown videos =
     if List.isEmpty videos then
-        empty
+        Html.div [] [ Html.text "Please wait..." ]
 
     else
-        Html.select [ Events.onInput Msg.VideoSelected ] <|
-            makeOption { title = "Select one please ;)", path = "" }
-                :: List.map makeOption videos
+        Dropdown.view
+            { options = List.map (\v -> { value = v.path, display = v.title }) videos
+            , selectEvent = Msg.VideoSelected
+            , default = { value = "", display = "Select one please ;)" }
+            }
 
 
-makeOption : Video.Video -> Html.Html Msg.Msg
-makeOption video =
-    Html.option
-        [ Html.Attributes.value video.path ]
-        [ Html.text video.title ]
+player : Model -> Html.Html Msg.Msg
+player model =
+    Video.makePlayer
+        { path = model.selected
+        , extensions = model.extensions
+        , attrs =
+            [ Html.Attributes.width 960
+            , Html.Attributes.height 650
+            , Html.Attributes.controls True
+            ]
+        }
 
 
-makePlayer : Types.Model -> Html.Html Msg.Msg
-makePlayer model =
-    case model.selected of
-        Nothing ->
-            empty
-
-        Just path ->
-            Html.video
-                [ Html.Attributes.width 960
-                , Html.Attributes.height 650
-                , Html.Attributes.controls True
-                ]
-            <|
-                List.map (Video.htmlSourceElem path) model.extensions
-
-
-downloadList : Types.Model -> Html.Html Msg.Msg
-downloadList model =
-    let
-        selected =
+download : Model -> Html.Html Msg.Msg
+download model =
+    Video.downloadList
+        { selected =
             if not model.withDownload then
                 Nothing
 
             else
                 model.selected
-    in
-    case selected of
-        Nothing ->
-            empty
-
-        Just path ->
-            Html.div [ Html.Attributes.class "downloadList" ] <|
-                List.map (\e -> Video.downloadLink path e) model.extensions
+        , extensions = model.extensions
+        , attrs = [ Html.Attributes.class "downloadList" ]
+        }

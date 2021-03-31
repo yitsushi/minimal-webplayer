@@ -1,12 +1,14 @@
 port module Update exposing (..)
 
 import Msg
-import Types
+import Model exposing (Model)
 
 
-update : Msg.Msg -> Types.Model -> ( Types.Model, Cmd Msg.Msg )
+update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
     case msg of
+        Msg.VideoSelected "" ->
+            ( { model | selected = Nothing }, reloadVideoSource () )
         Msg.VideoSelected path ->
             ( { model | selected = Just path }, reloadVideoSource () )
 
