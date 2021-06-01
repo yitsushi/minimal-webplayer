@@ -49,7 +49,7 @@ downloadLink path format =
 
 filename : String -> FileFormat -> String
 filename path format =
-    (Maybe.withDefault "unknown" <| List.head <| List.drop 1 <| String.split "/" path) ++ "." ++ format.extention
+    (Maybe.withDefault "unknown" <| List.head <| List.take 1 <| List.reverse <| String.split "/" path) ++ "." ++ format.extention
 
 
 type alias ListConfig msg =
