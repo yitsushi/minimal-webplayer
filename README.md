@@ -3,6 +3,8 @@
 This is a very simple video player. My only goal with this project was, to be
 able to be hosted on S3 (or compatible service), especially on my Minio instance.
 
+[Demo](https://share-efertone.storage.efertone.me/dockercon2021/index.html)
+
 ## Deploy
 
 1. Build the application: `make build-prod`
