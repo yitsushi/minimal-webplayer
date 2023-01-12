@@ -6,7 +6,8 @@ import Json.Decode
 
 
 type alias Video =
-    { title : String
+    { name : String
+    , title : String
     , path : String
     }
 
@@ -24,7 +25,8 @@ videoListDecoder =
 
 videoDecoder : Json.Decode.Decoder Video
 videoDecoder =
-    Json.Decode.map2 Video
+    Json.Decode.map3 Video
+        (Json.Decode.field "Name" Json.Decode.string)
         (Json.Decode.field "Title" Json.Decode.string)
         (Json.Decode.field "Path" Json.Decode.string)
 
