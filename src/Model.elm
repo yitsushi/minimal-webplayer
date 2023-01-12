@@ -5,7 +5,8 @@ import Video
 
 
 type alias Model =
-    { selected : Maybe String
+    { selectedGroup : Maybe String
+    , selected : Maybe String
     , videos : List Video.Video
     , extensions : List Video.FileFormat
     , withDownload : Bool
@@ -14,7 +15,8 @@ type alias Model =
 
 initialState : Flags -> Model
 initialState flags =
-    { selected = Nothing
+    { selectedGroup = Nothing
+    , selected = Nothing
     , videos = []
     , extensions = flags.extentions
     , withDownload = withDownload flags
